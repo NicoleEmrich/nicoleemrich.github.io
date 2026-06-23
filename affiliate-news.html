@@ -144,6 +144,26 @@
   .flag.tempur  { background: #efe9df; color: #1a1a1a; border-color: #ddd2bd; }
   .flag.messmer { background: #16264d; color: #e3c069; border-color: #16264d; }
   .flags { display: flex; flex-direction: column; gap: 5px; align-items: flex-start; }
+  /* HLC Kundenfarbe */
+  .item .tag.hlc { background: #0f5f5c; color: #e9d9a8; }
+  .flag.hlc { background: #e2f1ef; color: #0f5f5c; border-color: #bfe0db; }
+  .item.feature.fe-hlc { border-left-color: #0f5f5c; }
+  /* Publisher-Palette: Lila -> Blau -> Cyan */
+  .item .tag.pub.p1 { background: #7c3aed; }
+  .item .tag.pub.p2 { background: #6b3def; }
+  .item .tag.pub.p3 { background: #5a48f0; }
+  .item .tag.pub.p4 { background: #4a58ee; }
+  .item .tag.pub.p5 { background: #3b6ae9; }
+  .item .tag.pub.p6 { background: #2f7ce0; }
+  .item .tag.pub.p7 { background: #248ed4; }
+  .item .tag.pub.p8 { background: #189fc6; }
+  .item .tag.pub.p9 { background: #0bb0b8; }
+  /* Sektions-Akzente (Unterstrich) */
+  .sec-head.kunden    { border-bottom-color: #e0a72e; }
+  .sec-head.pubrad    { border-bottom-color: #7c3aed; }
+  .sec-head.gutschein { border-bottom-color: #0e7490; }
+  .sec-head.affiliate { border-bottom-color: #2c5282; }
+  .sec-head.wppsec    { border-bottom-color: #b91c1c; }
 
   /* Gutschein-Radar: Ranking-Liste */
   .ranklist { margin: 0; padding: 0; list-style: none; font-size: 13px; color: #374151; }
@@ -188,20 +208,19 @@
     <h1>Affiliate&nbsp;Daily</h1>
     <div class="date">
       <span><b>Dienstag, 23. Juni 2026</b></span>
-      <span>Ausgabe Nr. 3</span>
-      <span>Tagesausgabe</span>
+      <span>zuletzt aktualisiert: 07:10 Uhr</span>
     </div>
   </div>
 
   <div class="lead">
     Guten Morgen ☕ &nbsp;Die wichtigsten öffentlichen News des Tages –
-    aus Affiliate-Marketing, von <b>Awin</b>, unseren Kunden <b>Tempur</b>, <b>Meßmer</b> und <b>TUI Cruises</b>,
+    aus Affiliate-Marketing, von <b>Awin</b>, unseren Kunden <b>TUI Cruises</b>, <b>Hapag-Lloyd Cruises</b>, <b>Tempur</b> und <b>Meßmer</b>,
     aus dem <b>Publisher-Radar</b> sowie von <b>WPP Media</b>. Kurz, kuratiert, mit Quelle.
   </div>
 
   <!-- KUNDEN -->
   <section>
-    <div class="sec-head"><span class="emoji">⭐</span><h2>Kunden im Fokus</h2><span class="count">TUI Cruises · Tempur · Meßmer</span></div>
+    <div class="sec-head kunden"><span class="emoji">⭐</span><h2>Kunden im Fokus</h2><span class="count">TUI Cruises · Hapag-Lloyd · Tempur · Meßmer</span></div>
     <div class="grid">
 
       <div class="item feature fe-tuic">
@@ -216,6 +235,20 @@
         <h3>Fincantieri liefert Mein Schiff Flow ab</h3>
         <p>Das zweite Schiff der InTUItion-Klasse wurde am 12. Juni in Monfalcone übergeben; die erste reguläre Reise startet Ende Juni ab Palma.</p>
         <div class="src"><span>🛳️ Seatrade Cruise</span><span class="dot">·</span><a href="https://www.seatrade-cruise.com/shipbuilding-equipment/tui-cruises-mein-schiff-flow-begins-shakedown-voyage-in-trieste" target="_blank" rel="noopener">Zur Quelle →</a></div>
+      </div>
+
+      <div class="item">
+        <span class="tag hlc">Hapag-Lloyd Cruises</span>
+        <h3>Sommer-Promo: bis zu 30 % auf Luxus- &amp; Expeditionsreisen</h3>
+        <p>Für Neubuchungen bis 14. Juli 2026 gibt es bis zu 30 % Rabatt auf ausgewählte Reisen mit der MS EUROPA sowie den Hanseatic-Expeditionsschiffen (Spirit, Inspiration, Nature).</p>
+        <div class="src"><span>⚓ travel-dealz</span><span class="dot">·</span><a href="https://travel-dealz.de/deal/hapag-lloyd-cruises-sommer-promo/" target="_blank" rel="noopener">Zur Quelle →</a></div>
+      </div>
+
+      <div class="item">
+        <span class="tag hlc">Hapag-Lloyd Cruises</span>
+        <h3>Gesamte Flotte seit 2026 zweisprachig (DE/EN)</h3>
+        <p>Seit Januar 2026 fährt HLC alle Reisen zweisprachig (Deutsch &amp; Englisch) und öffnet sich damit stärker für internationale Premium-Gäste.</p>
+        <div class="src"><span>🛳️ Seatrade Cruise</span><span class="dot">·</span><a href="https://www.seatrade-cruise.com/ship-operations/hapag-lloyd-cruises-to-offer-bilingual-cruises-from-2026" target="_blank" rel="noopener">Zur Quelle →</a></div>
       </div>
 
       <div class="item">
@@ -251,27 +284,27 @@
 
   <!-- PUBLISHER-RADAR -->
   <section>
-    <div class="sec-head"><span class="emoji">📡</span><h2>Publisher-Radar</h2><span class="count">Was bewegt unsere Top-Publisher?</span></div>
+    <div class="sec-head pubrad"><span class="emoji">📡</span><h2>Publisher-Radar</h2><span class="count">Was bewegt unsere Top-Publisher?</span></div>
     <div class="grid three">
 
       <div class="item">
-        <span class="tag pub">HolidayPirates / Urlaubspiraten</span>
+        <span class="tag pub p1">HolidayPirates / Urlaubspiraten</span>
         <h3>Mein Schiff steht im Schaufenster</h3>
         <p>Aktueller Fokus: Kreuzfahrt-Deals mit prominenten Mein-Schiff-Aktionen („Angebote der Woche", Mittelmeer ab ~599 €, Jungfernfahrt Mein Schiff Flow ab ~1.599 €). Neue Deals dienstags.</p>
-        <div class="flags"><span class="flag tuic">✓ TUI Cruises aktiv</span></div>
+        <div class="flags"><span class="flag tuic">✓ TUI Cruises aktiv</span><span class="flag hlc">✓ Hapag-Lloyd Cruises aktiv</span></div>
         <div class="src"><span>🏴‍☠️ urlaubspiraten.de</span><span class="dot">·</span><a href="https://www.urlaubspiraten.de/kreuzfahrten" target="_blank" rel="noopener">Ansehen →</a></div>
       </div>
 
       <div class="item">
-        <span class="tag pub">Urlaubstracker</span>
+        <span class="tag pub p2">Urlaubstracker</span>
         <h3>Mein-Schiff-Gutschein-Hub aktiv</h3>
         <p>Fokus auf Reise-Deals &amp; Gutscheincodes; eigene Mein-Schiff-Seite mit 10%-Code, Frühbuchervorteilen (bis ~500 €) und Einstiegspreisen ab ~1.049 €.</p>
-        <div class="flags"><span class="flag tuic">✓ TUI Cruises aktiv</span></div>
+        <div class="flags"><span class="flag tuic">✓ TUI Cruises aktiv</span><span class="flag hlc">✓ Hapag-Lloyd Cruises aktiv</span></div>
         <div class="src"><span>🧳 urlaubstracker.de</span><span class="dot">·</span><a href="https://www.urlaubstracker.de/gutscheine/mein-schiff/" target="_blank" rel="noopener">Ansehen →</a></div>
       </div>
 
       <div class="item">
-        <span class="tag pub">Checkout Charlie</span>
+        <span class="tag pub p3">Checkout Charlie</span>
         <h3>Voucher &amp; Cashback breit über Retail</h3>
         <p>Betreibt Sparwelt.de, Gutscheine.de &amp; shopmate (RTL). Fokus: Gutschein- &amp; Cashback-Aktionen; aktive Tempur-Gutscheinseite (Rabattcodes für Matratzen, Kissen, Topper).</p>
         <div class="flags"><span class="flag tempur">✓ Tempur aktiv</span></div>
@@ -279,7 +312,7 @@
       </div>
 
       <div class="item">
-        <span class="tag pub">idealo</span>
+        <span class="tag pub p4">idealo</span>
         <h3>Produkt-Preisvergleich mit Tempur</h3>
         <p>Fokus: Preisvergleich über tausende Shops. Tempur-Matratzen, -Kissen &amp; -Topper sind gelistet – wichtiger Touchpoint kurz vor der Kaufentscheidung.</p>
         <div class="flags"><span class="flag tempur">✓ Tempur aktiv</span></div>
@@ -287,7 +320,7 @@
       </div>
 
       <div class="item">
-        <span class="tag pub">Savoo</span>
+        <span class="tag pub p5">Savoo</span>
         <h3>Gutscheine für Mein Schiff &amp; Tempur</h3>
         <p>Voucher-Portal (charity-orientiert). Aktiv mit Mein-Schiff-Codes (bis ~20 % / 300 €) und Tempur-Rabatten (bis ~75 % auf Matratzen &amp; Kissen).</p>
         <div class="flags"><span class="flag tuic">✓ TUI Cruises aktiv</span><span class="flag tempur">✓ Tempur aktiv</span></div>
@@ -295,7 +328,7 @@
       </div>
 
       <div class="item">
-        <span class="tag pub">Groupon</span>
+        <span class="tag pub p6">Groupon</span>
         <h3>Mein Schiff im Deal-Marktplatz</h3>
         <p>Fokus: Deal-/Gutscheinplattform. Aktive Mein-Schiff-Gutscheine (bis ~20 %), TUI-Cruises-Code (35 €) sowie diverse Kreuzfahrt-Deals.</p>
         <div class="flags"><span class="flag tuic">✓ TUI Cruises aktiv</span></div>
@@ -303,7 +336,7 @@
       </div>
 
       <div class="item">
-        <span class="tag pub">Payback</span>
+        <span class="tag pub p7">Payback</span>
         <h3>Mein Schiff im Punkte-Shop</h3>
         <p>Fokus: Bonusprogramm/Cashback. Mein Schiff ist im Payback-Shop gelistet (Punkte sammeln, zeitweise 300-€-Aktionen für ausgewählte Kund:innen).</p>
         <div class="flags"><span class="flag tuic">✓ TUI Cruises aktiv</span></div>
@@ -311,11 +344,19 @@
       </div>
 
       <div class="item">
-        <span class="tag pub">GuteGutscheine.de</span>
+        <span class="tag pub p8">GuteGutscheine.de</span>
         <h3>Tempur- &amp; Mein-Schiff-Codes aktiv</h3>
         <p>Voucher-Portal. Aktive Tempur-Gutscheine (10 € / bis 60 %) und Mein-Schiff-Aktionscodes – beide Kunden gelistet.</p>
         <div class="flags"><span class="flag tempur">✓ Tempur aktiv</span><span class="flag tuic">✓ TUI Cruises aktiv</span></div>
         <div class="src"><span>🎟️ gutegutscheine.de</span><span class="dot">·</span><a href="https://www.gutegutscheine.de/shop/tempur.com" target="_blank" rel="noopener">Ansehen →</a></div>
+      </div>
+
+      <div class="item">
+        <span class="tag pub p9">BravoGutschein</span>
+        <h3>Breites Gutschein-Portfolio über mehrere Kunden</h3>
+        <p>Aktiver Gutschein-Aggregator mit eigenen Seiten u. a. für Tempur (zahlreiche Codes), Meßmer und Mein Schiff – breite Abdeckung über mehrere unserer Kunden.</p>
+        <div class="flags"><span class="flag tuic">✓ TUI Cruises aktiv</span><span class="flag tempur">✓ Tempur aktiv</span><span class="flag messmer">✓ Meßmer aktiv</span></div>
+        <div class="src"><span>🎟️ bravogutschein.de</span><span class="dot">·</span><a href="https://www.bravogutschein.de/" target="_blank" rel="noopener">Ansehen →</a></div>
       </div>
 
     </div>
@@ -323,7 +364,7 @@
 
   <!-- GUTSCHEIN-RADAR (Google-Top: wer spielt Gutscheine je Kunde aus) -->
   <section>
-    <div class="sec-head"><span class="emoji">🔍</span><h2>Gutschein-Radar</h2><span class="count">Wer rankt bei Google oben? (je Kunde)</span></div>
+    <div class="sec-head gutschein"><span class="emoji">🔍</span><h2>Gutschein-Radar</h2><span class="count">Wer rankt bei Google oben? (je Kunde)</span></div>
     <div class="grid three">
 
       <div class="item">
@@ -359,6 +400,18 @@
           <li><span class="rank">3</span><a href="https://www.coupons.de/gutscheine/messmer" target="_blank" rel="noopener">coupons.de</a><span class="what">– 10% + 4,49 €</span></li>
           <li><span class="rank">4</span><a href="https://www.gutscheine.com/messmer/" target="_blank" rel="noopener">gutscheine.com</a><span class="what">– 10%</span></li>
           <li><span class="rank">5</span><a href="https://www.gutscheinpony.de/gutscheine/messmer" target="_blank" rel="noopener">gutscheinpony.de</a><span class="what">– Aktionen</span></li>
+        </ol>
+      </div>
+
+      <div class="item">
+        <span class="tag hlc">Hapag-Lloyd · „Gutschein"</span>
+        <h3>Top-Ranker bei Google</h3>
+        <ol class="ranklist">
+          <li><span class="rank">1</span><a href="https://travel-dealz.de/gutschein/hapag-lloyd-cruises-gutschein/" target="_blank" rel="noopener">travel-dealz.de</a><span class="what">– bis 30% / 20%</span></li>
+          <li><span class="rank">2</span><a href="https://www.urlaubstracker.de/hapag-lloyyd-kreuzfahrt-ms-europa/" target="_blank" rel="noopener">urlaubstracker.de</a><span class="what">– MS EUROPA 2 Deals</span></li>
+          <li><span class="rank">3</span><a href="https://www.wissenswertes.at/gutscheine/hl-cruises.de" target="_blank" rel="noopener">wissenswertes.at</a><span class="what">– bis 50%</span></li>
+          <li><span class="rank">4</span><a href="https://www.luxusschiffe.de/hapag-lloyd-cruises/ms-europa/specials/" target="_blank" rel="noopener">luxusschiffe.de</a><span class="what">– Specials</span></li>
+          <li><span class="rank">5</span><a href="https://www.kreuzfahrtpiraten.de/tag/hapag-lloyd-cruises/" target="_blank" rel="noopener">kreuzfahrtpiraten.de</a><span class="what">– bis 30%</span></li>
         </ol>
       </div>
 
@@ -425,42 +478,6 @@
     </div>
   </section>
 
-  <!-- AFFILIATE ALLGEMEIN -->
-  <section>
-    <div class="sec-head"><span class="emoji">🔗</span><h2>Affiliate-Marketing</h2><span class="count">4 Meldungen</span></div>
-    <div class="grid">
-
-      <div class="item feature">
-        <span class="tag">Marktzahlen</span>
-        <h3>Branche knackt 17 Mrd. $ – Kurs auf 20 Mrd. $ bis Jahresende</h3>
-        <p>Der erste „2026 State of Affiliate Marketing"-Report (AffiliateBooster) sieht die globale Branche über 17 Mrd. $; US-Affiliate-Spendings sollen 2026 rund 13,8 Mrd. $ erreichen. Performance-Partnerschaften wachsen weiter zweistellig.</p>
-        <div class="src"><span>📊 Business Standard / AffiliateBooster</span><span class="dot">·</span><a href="https://www.business-standard.com/amp/content/press-releases-ani/affiliatebooster-com-releases-2026-state-of-affiliate-marketing-report-industry-surpasses-17b-on-track-for-20b-by-year-end-126061900748_1.html" target="_blank" rel="noopener">Zur Quelle →</a></div>
-      </div>
-
-      <div class="item">
-        <span class="tag">DACH</span>
-        <h3>„Eine Branche im Aufbruch" – Kooperationen, Rekorde, Transparenz</h3>
-        <p>Projecter fasst in den Affiliate-News 01/2026 die wichtigsten DACH-Entwicklungen zusammen: neue Kooperationen, Rekordzahlen und den Kampf um mehr Transparenz im Channel.</p>
-        <div class="src"><span>🇩🇪 Projecter</span><span class="dot">·</span><a href="https://www.projecter.de/blog/affiliate-marketing/affiliate-marketing-news-01-2026-eine-branche-im-aufbruch-kooperationen-rekordzahlen-und-der-kampf-um-transparenz/" target="_blank" rel="noopener">Zur Quelle →</a></div>
-      </div>
-
-      <div class="item">
-        <span class="tag">Trend</span>
-        <h3>KI &amp; generative Suche verschieben das Discovery-Spiel</h3>
-        <p>Generative KI-Chatbots verändern, wie Konsument:innen Produkte vergleichen; Creator gewinnen Budget-Anteile, während die Messung den vollen Affiliate-Wert noch schwer abbildet.</p>
-        <div class="src"><span>📈 eMarketer</span><span class="dot">·</span><a href="https://www.emarketer.com/content/faq-on-affiliate-marketing--how-ai-creators-reshaping-channel-2026" target="_blank" rel="noopener">Zur Quelle →</a></div>
-      </div>
-
-      <div class="item">
-        <span class="tag">Event</span>
-        <h3>TactixX 2026: „Creator statt Banner" rückt in den Fokus</h3>
-        <p>Am 30. Juni in München; die Vorschau betont KI, Creator Economy und Sichtbarkeit in AI-Search als prägende Themen für Performance-Marketing.</p>
-        <div class="src"><span>🎤 termfrequenz</span><span class="dot">·</span><a href="https://www.termfrequenz.de/podcast/affiliate-talkxx-folge-73-tactixx-2026-warum-performance-marketing-jetzt-neu-gedacht-werden-muss/" target="_blank" rel="noopener">Zur Quelle →</a></div>
-      </div>
-
-    </div>
-  </section>
-
   <!-- LEARNING DER WOCHE (wechselt nur montags) -->
   <div class="learning">
     <div class="icon">🌱</div>
@@ -509,9 +526,45 @@
     </div>
   </section>
 
+  <!-- AFFILIATE ALLGEMEIN -->
+  <section>
+    <div class="sec-head affiliate"><span class="emoji">🔗</span><h2>Affiliate-Marketing</h2><span class="count">4 Meldungen</span></div>
+    <div class="grid">
+
+      <div class="item feature">
+        <span class="tag">Marktzahlen</span>
+        <h3>Branche knackt 17 Mrd. $ – Kurs auf 20 Mrd. $ bis Jahresende</h3>
+        <p>Der erste „2026 State of Affiliate Marketing"-Report (AffiliateBooster) sieht die globale Branche über 17 Mrd. $; US-Affiliate-Spendings sollen 2026 rund 13,8 Mrd. $ erreichen. Performance-Partnerschaften wachsen weiter zweistellig.</p>
+        <div class="src"><span>📊 Business Standard / AffiliateBooster</span><span class="dot">·</span><a href="https://www.business-standard.com/amp/content/press-releases-ani/affiliatebooster-com-releases-2026-state-of-affiliate-marketing-report-industry-surpasses-17b-on-track-for-20b-by-year-end-126061900748_1.html" target="_blank" rel="noopener">Zur Quelle →</a></div>
+      </div>
+
+      <div class="item">
+        <span class="tag">DACH</span>
+        <h3>„Eine Branche im Aufbruch" – Kooperationen, Rekorde, Transparenz</h3>
+        <p>Projecter fasst in den Affiliate-News 01/2026 die wichtigsten DACH-Entwicklungen zusammen: neue Kooperationen, Rekordzahlen und den Kampf um mehr Transparenz im Channel.</p>
+        <div class="src"><span>🇩🇪 Projecter</span><span class="dot">·</span><a href="https://www.projecter.de/blog/affiliate-marketing/affiliate-marketing-news-01-2026-eine-branche-im-aufbruch-kooperationen-rekordzahlen-und-der-kampf-um-transparenz/" target="_blank" rel="noopener">Zur Quelle →</a></div>
+      </div>
+
+      <div class="item">
+        <span class="tag">Trend</span>
+        <h3>KI &amp; generative Suche verschieben das Discovery-Spiel</h3>
+        <p>Generative KI-Chatbots verändern, wie Konsument:innen Produkte vergleichen; Creator gewinnen Budget-Anteile, während die Messung den vollen Affiliate-Wert noch schwer abbildet.</p>
+        <div class="src"><span>📈 eMarketer</span><span class="dot">·</span><a href="https://www.emarketer.com/content/faq-on-affiliate-marketing--how-ai-creators-reshaping-channel-2026" target="_blank" rel="noopener">Zur Quelle →</a></div>
+      </div>
+
+      <div class="item">
+        <span class="tag">Event</span>
+        <h3>TactixX 2026: „Creator statt Banner" rückt in den Fokus</h3>
+        <p>Am 30. Juni in München; die Vorschau betont KI, Creator Economy und Sichtbarkeit in AI-Search als prägende Themen für Performance-Marketing.</p>
+        <div class="src"><span>🎤 termfrequenz</span><span class="dot">·</span><a href="https://www.termfrequenz.de/podcast/affiliate-talkxx-folge-73-tactixx-2026-warum-performance-marketing-jetzt-neu-gedacht-werden-muss/" target="_blank" rel="noopener">Zur Quelle →</a></div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- WPP -->
   <section>
-    <div class="sec-head"><span class="emoji">🏛️</span><h2>WPP Media &amp; Media-Branche</h2><span class="count">3 Meldungen</span></div>
+    <div class="sec-head wppsec"><span class="emoji">🏛️</span><h2>WPP Media &amp; Media-Branche</h2><span class="count">3 Meldungen</span></div>
     <div class="grid">
 
       <div class="item">
