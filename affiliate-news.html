@@ -6,114 +6,147 @@
 <title>Affiliate Daily – WPP Media</title>
 <style>
   :root{
-    --bg:#ffffff; --card:#ffffff; --ink:#18181b; --muted:#8e8e98; --line:#ededed;
-    --accent:#ea580c; --accent-soft:#fff3ec;
-    --shadow:0 1px 2px rgba(24,24,27,.03);
-    --messmer:#27406b; --tuicc:#2563a8; --hlc:#ea580c; --tempurc:#6b5d44;
+    --bg:#f4f5fc; --panel:#ffffff; --ink:#1b1e36; --muted:#6b6f93; --line:#e7e9f4;
+    --c-coral:#ff5a5f; --c-purple:#7c5cff; --c-blue:#3b82f6; --c-gold:#d99a1f;
+    --c-green:#10b981; --c-pink:#ec4899; --c-orange:#ea580c; --c-teal:#0ea5a0; --c-red:#ef4444;
+    --grad:linear-gradient(135deg,#7c5cff 0%,#ff5a5f 100%);
+    --accent:#7c5cff; --accent-soft:#efeaff;
+    --shadow:0 1px 2px rgba(27,30,54,.04), 0 12px 30px rgba(27,30,54,.06);
   }
   *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+  html,body{margin:0;padding:0;color:var(--ink);
     font-family:-apple-system,BlinkMacSystemFont,"Inter","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
     font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;}
-  .wrap{max-width:1000px;margin:0 auto;padding:44px 24px 100px;}
+  body{background:
+    radial-gradient(1100px 520px at 88% -8%, rgba(124,92,255,.16), rgba(124,92,255,0) 60%),
+    radial-gradient(900px 500px at -5% 0%, rgba(255,90,95,.12), rgba(255,90,95,0) 55%),
+    radial-gradient(900px 600px at 50% 120%, rgba(16,185,129,.10), rgba(16,185,129,0) 60%),
+    var(--bg);background-attachment:fixed;}
+  .wrap{max-width:1180px;margin:0 auto;padding:34px 24px 90px;}
 
-  .masthead{text-align:center;padding-bottom:24px;margin-bottom:14px;border-bottom:1px solid var(--line);}
-  .masthead .kicker{font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:700;color:var(--accent);}
-  .masthead h1{margin:12px 0 8px;font-size:44px;font-weight:600;letter-spacing:-.03em;color:var(--ink);}
-  .masthead .date{font-size:12.5px;color:var(--muted);display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:4px;}
-  .masthead .date b{color:var(--ink);font-weight:600;}
+  .layout{display:grid;grid-template-columns:250px 1fr;gap:28px;align-items:start;}
+  @media(max-width:880px){.layout{grid-template-columns:1fr;}}
+  .sidebar{position:sticky;top:22px;display:flex;flex-direction:column;gap:16px;}
+  @media(max-width:880px){.sidebar{position:static;}}
+  .main{min-width:0;}
 
-  .lead{background:var(--accent-soft);border:1px solid #ffe3d2;border-radius:14px;
-    padding:16px 20px;margin:26px 0 34px;font-size:14px;color:#7a4a30;}
+  /* Brand (masthead) im Sidebar */
+  .masthead{background:var(--grad);color:#fff;border:0;border-radius:20px;padding:22px 20px;text-align:left;
+    box-shadow:0 14px 34px rgba(124,92,255,.28);margin:0;}
+  .masthead .kicker{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:rgba(255,255,255,.85);}
+  .masthead h1{margin:10px 0 12px;font-size:30px;font-weight:800;letter-spacing:-.02em;color:#fff;line-height:1.05;}
+  .masthead .date{display:flex;flex-direction:column;gap:3px;align-items:flex-start;font-size:12px;color:rgba(255,255,255,.92);border:0;margin:0;padding:0;}
+  .masthead .date b{color:#fff;font-weight:700;}
+
+  /* Sidebar-Navigation */
+  .snav{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:10px;display:flex;flex-direction:column;gap:2px;box-shadow:var(--shadow);}
+  .snav .nt{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700;padding:8px 10px 6px;}
+  .snav a{display:flex;align-items:center;gap:11px;padding:9px 11px;border-radius:11px;color:var(--ink);text-decoration:none;font-size:13px;font-weight:600;transition:background .12s ease;}
+  .snav a:hover{background:#f2f3fb;}
+  .snav .d{width:9px;height:9px;border-radius:50%;flex:0 0 auto;}
+
+  .lead{background:linear-gradient(135deg,#efeaff,#ffeef0);border:1px solid #e6def9;border-radius:16px;
+    padding:16px 20px;margin:0 0 26px;font-size:14px;color:#4a4a6a;}
   .lead b{color:var(--accent);font-weight:600;}
-  .lead .we{color:var(--accent);font-weight:700;}
+  .lead .we{color:var(--c-coral);font-weight:700;}
 
-  .learning{display:flex;gap:18px;align-items:flex-start;background:#fafafa;
-    border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:14px;
-    padding:20px 22px;margin:0 0 34px;}
+  .learning{display:flex;gap:18px;align-items:flex-start;
+    background:linear-gradient(135deg,#fdeef7,#f3eeff);
+    border:1px solid #f3d9ec;border-left:4px solid var(--c-pink);border-radius:18px;
+    padding:20px 22px;margin:0 0 26px;box-shadow:var(--shadow);}
   .learning .icon{font-size:26px;line-height:1;}
   .learning .body{flex:1;}
-  .learning .kw{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);}
-  .learning h3{margin:6px 0 7px;font-size:17px;font-weight:600;color:var(--ink);}
-  .learning p{margin:0;font-size:13.5px;color:#52525b;}
-  .learning .takeaway{margin-top:9px;font-size:13px;color:#3f3f46;}
-  .learning .takeaway b{color:var(--accent);}
+  .learning .kw{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--c-pink);}
+  .learning h3{margin:5px 0 7px;font-size:17px;font-weight:700;color:var(--ink);}
+  .learning p{margin:0;font-size:13.5px;color:#54546f;}
+  .learning .takeaway{margin-top:9px;font-size:13px;color:#7a3a63;}
+  .learning .takeaway b{color:var(--c-pink);}
   .learning .src{margin-top:11px;font-size:12px;color:var(--muted);}
   .learning .src a{color:var(--accent);font-weight:600;text-decoration:none;}
-  .learning .src a:hover{text-decoration:underline;}
 
-  section{margin-bottom:46px;}
-  .sec-head{display:flex;align-items:center;gap:9px;border-bottom:1px solid var(--line);padding-bottom:11px;margin-bottom:20px;}
+  section{margin-bottom:34px;scroll-margin-top:18px;}
+  .sec-head{display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--line);padding-bottom:11px;margin-bottom:18px;}
   .sec-head .emoji{display:none;}
-  .sec-head h2{margin:0;font-size:13px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--ink);display:flex;align-items:center;}
-  .sec-head h2::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent);margin-right:10px;}
-  .sec-head .count{margin-left:auto;font-size:12px;color:var(--muted);font-weight:400;}
-  .sec-head.awin h2{color:var(--accent);}
+  .sec-head h2{margin:0;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);display:flex;align-items:center;}
+  .sec-head h2::before{content:"";display:inline-block;width:9px;height:9px;border-radius:3px;background:var(--accent);margin-right:11px;}
+  .sec-head .count{margin-left:auto;font-size:12px;color:var(--muted);font-weight:500;}
+  /* Sektions-Akzentfarben */
+  #kunden .sec-head h2::before{background:var(--c-coral);}
+  #publisher .sec-head h2::before{background:var(--c-purple);}
+  #gutschein .sec-head h2::before{background:var(--c-blue);}
+  #tipp .sec-head h2::before{background:var(--c-gold);}
+  #strategie .sec-head h2::before{background:var(--c-green);}
+  #awin .sec-head h2::before{background:var(--c-orange);}
+  #awin .sec-head h2{color:var(--c-orange);}
+  #affiliate .sec-head h2::before{background:var(--c-teal);}
+  #wpp .sec-head h2::before{background:var(--c-red);}
 
-  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
   .grid.three{grid-template-columns:1fr 1fr 1fr;}
-  @media(max-width:720px){.grid,.grid.three{grid-template-columns:1fr;}}
+  @media(max-width:1080px){.grid.three{grid-template-columns:1fr 1fr;}}
+  @media(max-width:560px){.grid,.grid.three{grid-template-columns:1fr;}}
 
-  .item{background:var(--card);border:1px solid var(--line);border-radius:14px;
-    padding:20px 22px;display:flex;flex-direction:column;gap:10px;
-    transition:border-color .15s ease, box-shadow .15s ease;}
-  .item:hover{border-color:#dcdcdc;box-shadow:0 6px 22px rgba(24,24,27,.06);}
-  .item .tag{align-self:flex-start;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;
-    padding:4px 10px;border-radius:999px;background:#f4f4f5;color:#71717a;}
-  .item .tag.tuic{background:#eef4fb;color:var(--tuicc);}
-  .item .tag.tempur{background:#f4f1ea;color:var(--tempurc);}
-  .item .tag.messmer{background:#eef1f6;color:var(--messmer);}
-  .item .tag.hlc{background:#fff2ea;color:var(--hlc);}
-  .item .tag.awin{background:var(--accent);color:#fff;}
-  .item .tag.wpp{background:#fbeeed;color:#b3382c;}
-  .item .tag.tipp{background:#fdf3e7;color:#b07a1e;}
-  .item .tag.pub{background:#18181b;color:#fff;font-size:11.5px;font-weight:700;letter-spacing:.03em;padding:5px 12px;}
+  .item{background:var(--panel);border:1px solid var(--line);border-radius:16px;
+    padding:18px 20px;display:flex;flex-direction:column;gap:9px;box-shadow:var(--shadow);
+    transition:transform .14s ease, box-shadow .14s ease;}
+  .item:hover{transform:translateY(-2px);box-shadow:0 2px 6px rgba(27,30,54,.05),0 18px 40px rgba(27,30,54,.10);}
+  .item .tag{align-self:flex-start;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;
+    padding:4px 11px;border-radius:999px;background:#eef0f8;color:#5b6088;}
+  .item .tag.tuic{background:#e8f0fe;color:#2563eb;}
+  .item .tag.tempur{background:#f1ede4;color:#8a6d3b;}
+  .item .tag.messmer{background:#e7f6ee;color:#0f8a5f;}
+  .item .tag.hlc{background:#fff0e7;color:var(--c-orange);}
+  .item .tag.awin{background:var(--c-orange);color:#fff;}
+  .item .tag.wpp{background:#fdeaea;color:#dc2626;}
+  .item .tag.tipp{background:#fdf3e0;color:#b8860b;}
+  .item .tag.pub{background:#1b1e36;color:#fff;font-size:11.5px;font-weight:700;letter-spacing:.03em;padding:5px 12px;}
 
-  .item h3{margin:0;font-size:15.5px;font-weight:600;line-height:1.4;color:var(--ink);letter-spacing:-.01em;}
-  .item p{margin:0;font-size:13.5px;color:#52525b;}
+  .item h3{margin:0;font-size:15.5px;font-weight:700;line-height:1.38;color:var(--ink);letter-spacing:-.01em;}
+  .item p{margin:0;font-size:13.5px;color:#54546f;}
   .item p.empty{color:var(--muted);font-style:italic;}
   .item .src{margin-top:auto;font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding-top:2px;}
   .item .src a{color:var(--accent);text-decoration:none;font-weight:600;}
   .item .src a:hover{text-decoration:underline;}
-  .item .src .dot{color:#d4d4d8;}
+  .item .src .dot{color:#cfd2e6;}
 
-  .flag{align-self:flex-start;font-size:11px;font-weight:600;padding:4px 11px;border-radius:999px;
-    background:#f4f4f5;color:#52525b;border:1px solid #e7e7ea;}
-  .flag.none{background:#f4f4f5;color:#9a9aa3;border-color:#ededed;}
-  .flag.tuic{background:#eef4fb;color:var(--tuicc);border-color:#dbe8f6;}
-  .flag.tempur{background:#f4f1ea;color:var(--tempurc);border-color:#e7dfce;}
-  .flag.messmer{background:#eef1f6;color:var(--messmer);border-color:#dde3ee;}
-  .flag.hlc{background:#fff2ea;color:var(--hlc);border-color:#ffd9bf;}
+  .flag{align-self:flex-start;font-size:11px;font-weight:700;padding:4px 11px;border-radius:999px;
+    background:#eef0f8;color:#5b6088;border:1px solid #e2e5f2;}
+  .flag.none{background:#f1f2f8;color:#9a9eb8;border-color:#e7e9f4;}
+  .flag.tuic{background:#e8f0fe;color:#2563eb;border-color:#d4e3fb;}
+  .flag.tempur{background:#f1ede4;color:#8a6d3b;border-color:#e6dcc8;}
+  .flag.messmer{background:#e7f6ee;color:#0f8a5f;border-color:#cdebdb;}
+  .flag.hlc{background:#fff0e7;color:var(--c-orange);border-color:#ffd9c2;}
   .flags{display:flex;flex-direction:column;gap:6px;align-items:flex-start;}
 
-  .item.feature{grid-column:1 / -1;border-left:3px solid var(--accent);}
-  .item.feature.fe-awin{border-left-color:var(--accent);}
-  .item.feature.fe-tuic{border-left-color:var(--tuicc);}
-  .item.feature.fe-hlc{border-left-color:var(--hlc);}
-  .item.feature.fe-tipp{border-left-color:#b07a1e;}
+  .item.feature{grid-column:1 / -1;border-left:4px solid var(--c-purple);}
+  .item.feature.fe-awin{border-left-color:var(--c-orange);}
+  .item.feature.fe-tuic{border-left-color:#2563eb;}
+  .item.feature.fe-hlc{border-left-color:var(--c-orange);}
+  .item.feature.fe-tipp{border-left-color:var(--c-gold);}
 
-  .ranklist{margin:0;padding:0;list-style:none;font-size:13px;color:#52525b;}
+  .ranklist{margin:0;padding:0;list-style:none;font-size:13px;color:#54546f;}
   .ranklist li{display:flex;gap:9px;align-items:baseline;padding:7px 0;border-bottom:1px solid var(--line);}
   .ranklist li:last-child{border-bottom:0;}
-  .ranklist .rank{font-weight:700;min-width:15px;color:var(--accent);}
+  .ranklist .rank{font-weight:800;min-width:15px;color:var(--c-blue);}
   .ranklist a{color:var(--ink);text-decoration:none;font-weight:600;}
   .ranklist a:hover{color:var(--accent);}
   .ranklist .what{color:var(--muted);}
 
   .meta-row{display:flex;gap:7px;flex-wrap:wrap;align-items:center;}
-  .when{font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:999px;background:#f4f4f5;color:#71717a;border:1px solid #e7e7ea;white-space:nowrap;letter-spacing:.03em;}
-  .sowhat{margin-top:7px;font-size:13px;color:#7a4a30;background:var(--accent-soft);border-left:3px solid var(--accent);padding:9px 12px;border-radius:0 8px 8px 0;}
-  .sowhat b{color:var(--accent);}
+  .when{font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--accent-soft);color:var(--accent);border:1px solid #ded3ff;white-space:nowrap;letter-spacing:.03em;}
+  .sowhat{margin-top:7px;font-size:13px;color:#3f5a52;background:#e9f7f1;border-left:3px solid var(--c-green);padding:9px 12px;border-radius:0 8px 8px 0;}
+  .sowhat b{color:#0f8a5f;}
 
-  footer{margin-top:54px;border-top:1px solid var(--line);padding-top:20px;font-size:12px;color:var(--muted);text-align:center;line-height:1.8;}
+  footer{margin-top:44px;border-top:1px solid var(--line);padding-top:20px;font-size:12px;color:var(--muted);text-align:center;line-height:1.8;}
   footer b{color:var(--ink);}
-  footer a{color:var(--accent);}
+  footer a{color:var(--accent);font-weight:600;}
 </style>
 </head>
 <body>
 <div class="wrap">
-
-  <div class="masthead">
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="masthead">
     <div class="kicker">WPP Media · Commerce / Affiliate Team</div>
     <h1>Affiliate&nbsp;Daily</h1>
     <div class="date">
@@ -121,6 +154,21 @@
       <span>zuletzt aktualisiert: 07:10 Uhr</span>
     </div>
   </div>
+    <nav class="snav">
+      <div class="nt">Springe zu</div>
+      <a href="#kunden"><span class="d" style="background:var(--c-coral)"></span>Kunden im Fokus</a>
+      <a href="#publisher"><span class="d" style="background:var(--c-purple)"></span>Publisher-Radar</a>
+      <a href="#gutschein"><span class="d" style="background:var(--c-blue)"></span>Gutschein-Radar</a>
+      <a href="#tipp"><span class="d" style="background:var(--c-gold)"></span>Tipp des Tages</a>
+      <a href="#strategie"><span class="d" style="background:var(--c-green)"></span>Strategie-Radar</a>
+      <a href="#learning"><span class="d" style="background:var(--c-pink)"></span>Learning der Woche</a>
+      <a href="#awin"><span class="d" style="background:var(--c-orange)"></span>Awin News</a>
+      <a href="#affiliate"><span class="d" style="background:var(--c-teal)"></span>Affiliate-Marketing</a>
+      <a href="#wpp"><span class="d" style="background:var(--c-red)"></span>WPP Media</a>
+    </nav>
+    </aside>
+    <main class="main">
+
 
   <div class="lead">
     Guten Morgen ☕ &nbsp;Die wichtigsten öffentlichen News des Tages –
@@ -129,7 +177,7 @@
   </div>
 
   <!-- KUNDEN -->
-  <section>
+  <section id="kunden">
     <div class="sec-head kunden"><span class="emoji">⭐</span><h2>Kunden im Fokus</h2><span class="count">TUI Cruises · Hapag-Lloyd · Tempur · Meßmer</span></div>
     <div class="grid">
 
@@ -193,7 +241,7 @@
   </section>
 
   <!-- PUBLISHER-RADAR -->
-  <section>
+  <section id="publisher">
     <div class="sec-head pubrad"><span class="emoji">📡</span><h2>Publisher-Radar</h2><span class="count">Was bewegt unsere Top-Publisher?</span></div>
     <div class="grid three">
 
@@ -273,7 +321,7 @@
   </section>
 
   <!-- GUTSCHEIN-RADAR (Google-Top: wer spielt Gutscheine je Kunde aus) -->
-  <section>
+  <section id="gutschein">
     <div class="sec-head gutschein"><span class="emoji">🔍</span><h2>Gutschein-Radar</h2><span class="count">Wer rankt bei Google oben? (je Kunde)</span></div>
     <div class="grid three">
 
@@ -329,7 +377,7 @@
   </section>
 
   <!-- TIPP DES TAGES -->
-  <section>
+  <section id="tipp">
     <div class="sec-head tipp"><span class="emoji">💡</span><h2>Tipp des Tages</h2><span class="count">Quelle zum Reinhören/Lesen</span></div>
     <div class="grid">
       <div class="item feature fe-tipp">
@@ -342,7 +390,7 @@
   </section>
 
   <!-- STRATEGIE-RADAR (vertiefend, Refresh ~2x/Woche Mo+Do) -->
-  <section>
+  <section id="strategie">
     <div class="sec-head strat"><span class="emoji">🧭</span><h2>Strategie-Radar</h2><span class="count">Vertiefung · Update ~2× pro Woche (Mo + Do)</span></div>
     <div class="grid">
 
@@ -389,7 +437,7 @@
   </section>
 
   <!-- LEARNING DER WOCHE (wechselt nur montags) -->
-  <div class="learning">
+  <div class="learning" id="learning">
     <div class="icon">🌱</div>
     <div class="body">
       <div class="kw">Learning der Woche · KW 26</div>
@@ -401,7 +449,7 @@
   </div>
 
   <!-- AWIN NEWS (immer alle Kacheln zeigen) -->
-  <section>
+  <section id="awin">
     <div class="sec-head awin"><span class="emoji">🟠</span><h2>Awin News</h2><span class="count">direkt von Awin · 4 Kacheln</span></div>
     <div class="grid">
 
@@ -437,7 +485,7 @@
   </section>
 
   <!-- AFFILIATE ALLGEMEIN -->
-  <section>
+  <section id="affiliate">
     <div class="sec-head affiliate"><span class="emoji">🔗</span><h2>Affiliate-Marketing</h2><span class="count">4 Meldungen</span></div>
     <div class="grid">
 
@@ -473,7 +521,7 @@
   </section>
 
   <!-- WPP -->
-  <section>
+  <section id="wpp">
     <div class="sec-head wppsec"><span class="emoji">🏛️</span><h2>WPP Media &amp; Media-Branche</h2><span class="count">3 Meldungen</span></div>
     <div class="grid">
 
@@ -508,6 +556,8 @@
     <span style="display:inline-block;margin-top:8px"><a href="impressum.html" style="color:var(--accent);font-weight:600;text-decoration:none">Impressum</a> · <a href="datenschutz.html" style="color:var(--accent);font-weight:600;text-decoration:none">Datenschutz</a></span>
   </footer>
 
+    </main>
+  </div>
 </div>
 </body>
 </html>
