@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>WPP Media — Arbeits-Dashboard</title>
+<style>
+  :root{
+    --bg:#f4f5fc; --card:#ffffff; --ink:#1b1e36; --muted:#6b7192;
+    --line:#e6e8f2; --brand1:#6d28d9; --brand2:#f0657a;
+    --now:#e11d48; --week:#d97706; --long:#2563eb;
+    --tuic:#0369a1; --tempur:#6d28d9; --messmer:#047857; --hlc:#0d9488; --wpp:#b91c1c;
+    --good:#059669; --bad:#dc2626;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:15px;line-height:1.45}
+  .wrap{max-width:1120px;margin:0 auto;padding:22px 20px 60px}
+  header.top{display:flex;align-items:center;justify-content:space-between;gap:16px;
+    background:linear-gradient(120deg,var(--brand1),var(--brand2));color:#fff;
+    border-radius:16px;padding:18px 22px;margin-bottom:18px;box-shadow:0 6px 20px rgba(109,40,217,.18)}
+  header.top h1{margin:0;font-size:20px;letter-spacing:.2px}
+  header.top .meta{font-size:12.5px;opacity:.92;text-align:right}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+  .kpi .lab{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+  .kpi .val{font-size:22px;font-weight:700;margin-top:3px}
+  .kpi .dlt{font-size:12px;margin-top:2px}
+  .up{color:var(--good)} .down{color:var(--bad)}
+  .grid2{display:grid;grid-template-columns:1.35fr .95fr;gap:18px}
+  @media(max-width:880px){.grid2{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,1fr)}}
+  section.box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:18px}
+  section.box h2{margin:0 0 12px;font-size:15.5px;display:flex;align-items:center;gap:8px}
+  .h2dot{width:9px;height:9px;border-radius:50%}
+  .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:auto}
+  /* To-Dos */
+  .grouplab{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;
+    color:var(--muted);margin:14px 0 8px}
+  .grouplab:first-child{margin-top:2px}
+  .todo{display:flex;gap:11px;align-items:flex-start;padding:11px 12px;border:1px solid var(--line);
+    border-radius:11px;margin-bottom:9px;background:#fff;transition:.15s}
+  .todo:hover{box-shadow:0 3px 12px rgba(27,30,54,.07)}
+  .todo.b-now{border-left:5px solid var(--now)}
+  .todo.b-week{border-left:5px solid var(--week)}
+  .todo.b-long{border-left:5px solid var(--long)}
+  .todo.done{opacity:.5}
+  .todo.done .t-title{text-decoration:line-through}
+  .cbx{margin-top:2px;width:18px;height:18px;flex:0 0 auto;cursor:pointer;accent-color:var(--brand1)}
+  .t-body{flex:1;min-width:0}
+  .t-title{font-weight:600;font-size:14.5px}
+  .t-detail{font-size:12.8px;color:var(--muted);margin-top:3px}
+  .t-why{font-size:12px;color:#8a4b9a;margin-top:4px;font-style:italic}
+  .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}
+  .tag{font-size:10.7px;font-weight:600;padding:2px 8px;border-radius:20px;background:#eef0f8;color:#3a3f63}
+  .tag.cl{color:#fff}
+  .tag.prio{background:#1b1e36;color:#fff}
+  .del{margin-left:6px;border:none;background:none;color:#c3c7db;cursor:pointer;font-size:15px;line-height:1}
+  .del:hover{color:var(--bad)}
+  .addrow{display:flex;gap:8px;margin-top:12px}
+  .addrow input{flex:1;padding:9px 11px;border:1px solid var(--line);border-radius:9px;font-size:14px}
+  .addrow select{padding:9px;border:1px solid var(--line);border-radius:9px;font-size:13px}
+  .addrow button, .btn{padding:9px 15px;border:none;border-radius:9px;background:var(--brand1);color:#fff;
+    font-weight:600;cursor:pointer;font-size:13.5px}
+  .addrow button:hover,.btn:hover{filter:brightness(1.07)}
+  /* Alerts */
+  .alert{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:10px;
+    background:#fff5f5;border:1px solid #fbd5d5;margin-bottom:8px}
+  .alert .ic{font-size:15px}
+  .alert .ab{flex:1}
+  .alert .ap{font-size:11px;font-weight:700;color:var(--bad)}
+  .alert .ad{font-size:13px;margin-top:1px}
+  .scal{padding:10px 12px;border-radius:10px;background:#f0fdf6;border:1px solid #bbf7d0;margin-bottom:8px}
+  .scal .st{font-size:11px;font-weight:700;color:var(--good);text-transform:uppercase;letter-spacing:.3px}
+  .scal .sd{font-size:13px;margin-top:2px}
+  .prog{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px dashed var(--line)}
+  .prog:last-child{border-bottom:none}
+  .prog .pn{font-weight:600;font-size:13.5px}
+  .prog .pv{font-size:12.5px;color:var(--muted)}
+  .prog .pd{font-size:12px;font-weight:600}
+  .foot{text-align:center;color:var(--muted);font-size:11.5px;margin-top:24px}
+  .empty{color:var(--muted);font-size:13px;padding:8px 2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>WPP Media — Arbeits-Dashboard</h1>
+      <div style="font-size:12.5px;opacity:.92;margin-top:3px">Affiliate Commerce · Nicole Emrich</div>
+    </div>
+    <div class="meta" id="meta"></div>
+  </header>
+
+  <div class="kpis" id="kpis"></div>
+
+  <section class="box">
+    <h2><span class="h2dot" style="background:var(--now)"></span> Dringende &amp; anstehende To-Dos
+      <span class="sub" id="todocount"></span></h2>
+    <div id="todos"></div>
+    <div class="addrow">
+      <input id="newtask" type="text" placeholder="Eigene Aufgabe hinzufügen…">
+      <select id="newbucket">
+        <option value="now">🔴 Dringend</option>
+        <option value="week" selected>🟠 Diese Woche</option>
+        <option value="long">🔵 Langfristig</option>
+      </select>
+      <button onclick="addTask()">+ Hinzufügen</button>
+    </div>
+  </section>
+
+  <div class="grid2">
+    <section class="box">
+      <h2><span class="h2dot" style="background:var(--bad)"></span> Tracking-Auffälligkeiten
+        <span class="sub" id="alertcount"></span></h2>
+      <div id="alerts"></div>
+    </section>
+    <section class="box">
+      <h2><span class="h2dot" style="background:var(--good)"></span> Neue Potenziale
+        <span class="sub">Top-Chancen</span></h2>
+      <div id="scaling"></div>
+    </section>
+  </div>
+
+  <section class="box">
+    <h2><span class="h2dot" style="background:var(--tuic)"></span> Programm-Überblick (30 Tage)
+      <span class="sub">exkl. Payback bei Mein Schiff</span></h2>
+    <div id="progs"></div>
+  </section>
+
+  <div class="foot">
+    Auto-Refresh täglich mit dem Morning-Briefing · manuelle Aufgaben &amp; Abhaken bleiben im Browser gespeichert ·
+    „Dashboard aktualisieren“ im Chat für einen Sofort-Refresh.
+  </div>
+</div>
+
+<script>
+const DATA = {"generated_dash": "07.07.2026 13:05", "generated_awin": "2026-07-07T10:13:24", "todos": [{"id": "agency-abrechnung-juni", "title": "Agency-Abrechnung Juni: Salesbreakdown/Rechnung an Mareen + Franzi senden", "detail": "Franzi hat den Betrag 3.704,65 € (zzgl. MwSt.) freigegeben. AWIN-AG-Dokumente 9127 (1125-775411) und 104581 (1125-770343) sind da. Naechster Schritt: Mail 3 (WPP-Rechnung Salesbreakdown, RG10…) erstellen und senden.", "bucket": "now", "prio": 92, "client": "Mein Schiff DACH", "source": "Outlook + Prozess", "why": "Feste Deadline (Monatszyklus, Tag 27–30) + Kunde hat freigegeben und wartet."}, {"id": "tracking-atolls-mydealz-ms", "title": "Tracking prüfen: Atolls mydealz (88787) Klick-Einbruch bei Mein Schiff", "detail": "466 Klicks vs. 3.788 Vorwoche — fast versiegt. Größtes Programm (1,36 Mio €/30T), daher hohes Umsatzrisiko. Mit Atolls-Follow-up-Thread verknüpfen.", "bucket": "now", "prio": 84, "client": "Mein Schiff DACH", "source": "AWIN-Alert", "why": "Akutes Umsatzrisiko im Kernprogramm."}, {"id": "checkout-charlie-2prozent", "title": "Checkout Charlie: Artikel „2% On-Top Mein Schiff Flow“ bestätigen", "detail": "Jameel (Checkout Charlie) hat den Artikel live gestellt und fragt „Passt alles?“. Inhaltliche Freigabe ist operativ — On-Top-Kondition selbst ggf. mit TUIC rückkoppeln.", "bucket": "now", "prio": 76, "client": "Mein Schiff DACH", "source": "Outlook", "why": "Externer Partner wartet auf kurze Rückmeldung."}, {"id": "tempur-reseller-compliance", "title": "Tempur Reseller-Compliance (TopCashback) lesen & intern nachhalten", "detail": "Ungelesener Thread. Verena (Tempur) hat aus Datenschutzgründen abgelehnt, Kundendaten an TopCashback zu geben; internes Monitoring läuft. Kenntnisnahme + ggf. Team-Antwort.", "bucket": "now", "prio": 72, "client": "Tempur", "source": "Outlook", "why": "Compliance-sensibel; Entscheidung liegt bei Tempur, Monitoring bei uns."}, {"id": "atolls-test-proposal", "title": "Atolls x Mein Schiff: Rückmeldung zu den zwei Test-Vorschlägen", "detail": "Praesentation mit 2 Tests raus (sicher: Cashback/Voucher-Boost Shoop/iGraal Neukunden; mutig: mydealz-Awareness-Paket + optional Twitch). WKZ/Twitch-Slot = Kundenentscheidung TUIC.", "bucket": "week", "prio": 66, "client": "Mein Schiff DACH", "source": "Outlook", "why": "Strategische Chance + externe Abstimmung; Budget-Teil an TUIC."}, {"id": "tuic-int-dach-screening", "title": "TUIC International → DACH Publisher-Screening (Juni) durchführen", "detail": "Monatlicher Lauf 104581→9127: Publisher mit ≥80% DACH-Traffic und ≥3 Sales umziehen. Excel + Mail-Vorlage erzeugen.", "bucket": "week", "prio": 58, "client": "Mein Schiff Int", "source": "Prozess (monatlich)", "why": "Wiederkehrende Aufgabe, Anfang des Monats faellig."}, {"id": "creovia-bewerbung", "title": "Creovia-Bewerbung screenen (Tempur AT, Publisher-ID 2939789)", "detail": "Content-Marketing-Publisher, Cold-Anfrage über AWIN-Interface. AWIN-Profil prüfen, Standard-Screening — operative Entscheidung.", "bucket": "week", "prio": 52, "client": "Tempur", "source": "Outlook", "why": "Publisher wartet; operative Standard-Entscheidung."}, {"id": "awin-feed-check", "title": "AWIN-Feed-Prüfung (Mein Schiff) bei Patrick/Technik nachhalten", "detail": "Feed wurde angepasst; Patrick (AWIN) hat an die Technik zur Prüfung gegeben. Status abwarten und ggf. erinnern.", "bucket": "week", "prio": 44, "client": "Mein Schiff DACH", "source": "Outlook", "why": "Wartet auf AWIN — Follow-up nötig, damit es nicht liegen bleibt."}, {"id": "awin-meetup-golden-quarter", "title": "AWIN Meet Up „Golden Quarter“ (08.09.) — anmelden/vormerken", "detail": "Einladung im Posteingang (ungelesen). Termin prüfen und ggf. anmelden.", "bucket": "long", "prio": 30, "client": "–", "source": "Outlook", "why": "Netzwerk-Termin, unkritisch, aber nicht vergessen."}, {"id": "affiliate-daily-invite", "title": "Affiliate-Daily: Collaborator-Einladung als NickyNikaa annehmen", "detail": "Damit der automatische Push auf nicoleemrich.github.io funktioniert. Einladung: github.com/NicoleEmrich/nicoleemrich.github.io/invitations.", "bucket": "long", "prio": 28, "client": "intern", "source": "Projekt (offen)", "why": "Blockiert sonst das automatische News-Dashboard-Update."}], "alerts": [{"prog": "Meßmer", "sev": "high", "type": "Publisher-Tracking-Einbruch", "detail": "YIELDKIT GmbH - Content sites (ID 143466): Klicks 1 vs. 236 Vorwoche — fast versiegt", "metric": -100}, {"prog": "Tempur", "sev": "high", "type": "Publisher-Tracking-Einbruch", "detail": "Linkbux (ID 685769): Klicks 78 vs. 528 Vorwoche — fast versiegt", "metric": -100}, {"prog": "Tempur", "sev": "high", "type": "Publisher-Tracking-Einbruch", "detail": "GutscheinDeal.de (ID 381721): Klicks 4 vs. 63 Vorwoche — fast versiegt", "metric": -100}, {"prog": "Tempur", "sev": "high", "type": "Publisher-Tracking-Einbruch", "detail": "Circle GmbH (ID 707279): Klicks 0 vs. 50 Vorwoche — fast versiegt", "metric": -100}, {"prog": "Tempur", "sev": "high", "type": "Publisher-Tracking-Einbruch", "detail": "Migliorspesa.it (ID 368713): Klicks 0 vs. 86 Vorwoche — fast versiegt", "metric": -100}, {"prog": "Mein Schiff DACH", "sev": "high", "type": "Publisher-Tracking-Einbruch", "detail": "Atolls DE (mydealz) (ID 88787): Klicks 466 vs. 3788 Vorwoche — fast versiegt", "metric": -100}, {"prog": "Mein Schiff DACH", "sev": "high", "type": "Publisher-Tracking-Einbruch", "detail": "advanced store (global) - Smart Advertising (ID 412875): Klicks 1 vs. 670 Vorwoche — fast versiegt", "metric": -100}], "scaling": [{"prog": "Meßmer", "type": "Momentum", "pid": 1658349, "detail": "EASY CLICK LIMITED (ID 1658349): Klicks +766%, Sales 0→3 — WKZ/Placement-Push prüfen", "score": 765.8536585365854}, {"prog": "Meßmer", "type": "Effizienz-Reserve", "pid": 575589, "detail": "media.ventive GmbH - Performance Channel - Retargeting: CR 8.3% bei 781 Klicks/65 Sales (30T) — über Programm-Schnitt, Reichweite ausbauen", "score": 540.9731113956467}, {"prog": "Mein Schiff DACH", "type": "Effizienz-Reserve", "pid": 320119, "detail": "Atolls DE (Shoop): CR 13.4% bei 292 Klicks/39 Sales (30T) — über Programm-Schnitt, Reichweite ausbauen", "score": 520.8904109589041}, {"prog": "Meßmer", "type": "Effizienz-Reserve", "pid": 303843, "detail": "COUPONS4U GmbH: CR 24.4% bei 78 Klicks/19 Sales (30T) — über Programm-Schnitt, Reichweite ausbauen", "score": 462.8205128205128}, {"prog": "Meßmer", "type": "Effizienz-Reserve", "pid": 332633, "detail": "vatago.de GmbH: CR 23.1% bei 78 Klicks/18 Sales (30T) — über Programm-Schnitt, Reichweite ausbauen", "score": 415.38461538461536}, {"prog": "Tempur", "type": "Effizienz-Reserve", "pid": 426667, "detail": "PAYBACK GmbH: CR 18.8% bei 96 Klicks/18 Sales (30T) — über Programm-Schnitt, Reichweite ausbauen", "score": 337.5}, {"prog": "Tempur", "type": "Effizienz-Reserve", "pid": 320119, "detail": "Atolls DE (Shoop): CR 23.6% bei 55 Klicks/13 Sales (30T) — über Programm-Schnitt, Reichweite ausbauen", "score": 307.27272727272725}, {"prog": "Mein Schiff DACH", "type": "Effizienz-Reserve", "pid": 477141, "detail": "Webravo S.R.L. / Bravogutschein.de: CR 6.9% bei 349 Klicks/24 Sales (30T) — über Programm-Schnitt, Reichweite ausbauen", "score": 165.04297994269342}, {"prog": "Mein Schiff DACH", "type": "Momentum", "pid": 321967, "detail": "Urlaubstracker GmbH (ID 321967): Klicks +150%, Sales 9→11 — WKZ/Placement-Push prüfen", "score": 150.31133250311333}, {"prog": "Tempur", "type": "Effizienz-Reserve", "pid": 331853, "detail": "TIKATO S.R.L (Europa): CR 10.0% bei 120 Klicks/12 Sales (30T) — über Programm-Schnitt, Reichweite ausbauen", "score": 120.0}, {"prog": "Mein Schiff DACH", "type": "Effizienz-Reserve", "pid": 300443, "detail": "Savoo DE: CR 1.7% bei 3049 Klicks/53 Sales (30T) — über Programm-Schnitt, Reichweite ausbauen", "score": 92.12856674319448}, {"prog": "Mein Schiff DACH", "type": "Momentum", "pid": 320207, "detail": "Checkout Charlie GmbH (MAIN ACCOUNT) (ID 320207): Klicks +78%, Sales 4→6 — WKZ/Placement-Push prüfen", "score": 77.94871794871796}], "portfolio": {"k30": {"clicks": 309017.0, "sales": 858.0, "val": 1426322.71, "comm": 110664.91000000002, "cr": 0.2776546274153202, "epc": 0.3581191649650343, "aov": 1662.380780885781, "storno": 0.0}, "d30": {"clicks": 9.26355465352276, "sales": 16.260162601626014, "val": 1.4085200897474222, "comm": 5.821056939644727}}, "recap_moves": [{"prog": "Tempur", "period": "3 Tage", "metric": "Umsatz", "fmt": "eur", "cur": 6289.940000000001, "base": 2323.77, "pct": 170.6782512899298, "dir": "up"}, {"prog": "Mein Schiff International", "period": "3 Tage", "metric": "Klicks", "fmt": "int", "cur": 266.0, "base": 117.0, "pct": 127.35042735042734, "dir": "up"}, {"prog": "Hapag-Lloyd Cruises", "period": "3 Tage", "metric": "Klicks", "fmt": "int", "cur": 449.0, "base": 306.0, "pct": 46.73202614379085, "dir": "up"}, {"prog": "Meßmer", "period": "3 Tage", "metric": "Sales", "fmt": "int", "cur": 29.0, "base": 44.0, "pct": -34.090909090909086, "dir": "down"}], "prog_cards": [{"label": "Mein Schiff DACH", "val": 1355129.63, "sales": 338.0, "comm": 102928.96, "clicks": 257786.0, "d7val": -1.8650803204149717, "d7clicks": -23.497339986121666}, {"label": "Mein Schiff International", "val": 0.0, "sales": 0.0, "comm": 0.0, "clicks": 808.0, "d7val": null, "d7clicks": 379.7872340425532}, {"label": "Hapag-Lloyd Cruises", "val": 19760.0, "sales": 1.0, "comm": 691.6, "clicks": 3284.0, "d7val": null, "d7clicks": 9.04645476772616}, {"label": "Tempur", "val": 38087.26000000001, "sales": 169.0, "comm": 5574.219999999999, "clicks": 16400.0, "d7val": 144.4299924104473, "d7clicks": 23.897581792318633}, {"label": "Meßmer", "val": 13345.819999999998, "sales": 350.0, "comm": 1470.1299999999999, "clicks": 30739.0, "d7val": -17.642522460320333, "d7clicks": 9.983429991714996}]};
+const LS_DONE = "wpp_dash_done_v1";
+const LS_MANUAL = "wpp_dash_manual_v1";
+const CLIENT_COLOR = {
+  "Mein Schiff DACH":"var(--tuic)","Mein Schiff Int":"var(--tuic)","Mein Schiff International":"var(--tuic)",
+  "Hapag-Lloyd Cruises":"var(--hlc)","HLC":"var(--hlc)","Tempur":"var(--tempur)","Meßmer":"var(--messmer)",
+  "intern":"#64748b","–":"#94a3b8"
+};
+function esc(s){return (s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+function getDone(){try{return JSON.parse(localStorage.getItem(LS_DONE)||"{}");}catch(e){return {};}}
+function setDone(d){localStorage.setItem(LS_DONE,JSON.stringify(d));}
+function getManual(){try{return JSON.parse(localStorage.getItem(LS_MANUAL)||"[]");}catch(e){return [];}}
+function setManual(m){localStorage.setItem(LS_MANUAL,JSON.stringify(m));}
+
+function meta(){
+  document.getElementById("meta").innerHTML =
+    "Dashboard: "+DATA.generated_dash+"<br>AWIN-Daten: "+esc(DATA.generated_awin);
+}
+function kpis(){
+  const k=DATA.portfolio.k30||{}, d=DATA.portfolio.d30||{};
+  function fe(x){return (x==null)?"–":Number(x).toLocaleString("de-DE",{maximumFractionDigits:0})+" €";}
+  function dd(x){if(x==null)return "";const up=x>=0;return '<span class="'+(up?'up':'down')+'">'+(up?'▲':'▼')+' '+Math.abs(x).toFixed(1)+'% vs. Vorperiode</span>';}
+  const cards=[
+    ["Umsatz 30 T", fe(k.val), dd(d.val)],
+    ["Sales 30 T", (k.sales!=null?Number(k.sales).toLocaleString("de-DE"):"–"), dd(d.sales)],
+    ["Provision 30 T", fe(k.comm), dd(d.comm)],
+    ["Klicks 30 T", (k.clicks!=null?Number(k.clicks).toLocaleString("de-DE"):"–"), dd(d.clicks)]
+  ];
+  document.getElementById("kpis").innerHTML = cards.map(c=>
+    '<div class="kpi"><div class="lab">'+c[0]+'</div><div class="val">'+c[1]+'</div><div class="dlt">'+c[2]+'</div></div>').join("");
+}
+function allTodos(){
+  const done=getDone();
+  let list=DATA.todos.map(t=>Object.assign({},t,{manual:false}));
+  getManual().forEach(m=>list.push(Object.assign({},m,{manual:true})));
+  list.forEach(t=>t.done=!!done[t.id]);
+  return list;
+}
+function renderTodos(){
+  const list=allTodos();
+  const buckets=[["now","🔴 Dringend"],["week","🟠 Diese Woche"],["long","🔵 Langfristig / wiederkehrend"]];
+  let html="";
+  let open=0;
+  buckets.forEach(([b,lab])=>{
+    let items=list.filter(t=>t.bucket===b).sort((a,c)=>(c.prio||0)-(a.prio||0));
+    // erledigte ans Ende
+    items.sort((a,c)=>(a.done-c.done));
+    if(!items.length) return;
+    html+='<div class="grouplab">'+lab+'</div>';
+    items.forEach(t=>{
+      if(!t.done) open++;
+      const cc=CLIENT_COLOR[t.client]||"#64748b";
+      html+='<div class="todo b-'+t.bucket+(t.done?' done':'')+'">';
+      html+='<input class="cbx" type="checkbox" '+(t.done?'checked':'')+' onchange="toggle(\''+t.id+'\')">';
+      html+='<div class="t-body">';
+      html+='<div class="t-title">'+esc(t.title)+'</div>';
+      if(t.detail) html+='<div class="t-detail">'+esc(t.detail)+'</div>';
+      if(t.why) html+='<div class="t-why">Warum priorisiert: '+esc(t.why)+'</div>';
+      html+='<div class="tags">';
+      if(t.prio) html+='<span class="tag prio">Prio '+t.prio+'</span>';
+      if(t.client&&t.client!=="–") html+='<span class="tag cl" style="background:'+cc+'">'+esc(t.client)+'</span>';
+      if(t.source) html+='<span class="tag">'+esc(t.source)+'</span>';
+      if(t.manual) html+='<span class="tag">manuell</span>';
+      html+='</div></div>';
+      if(t.manual) html+='<button class="del" title="Löschen" onclick="delManual(\''+t.id+'\')">✕</button>';
+      html+='</div>';
+    });
+  });
+  document.getElementById("todos").innerHTML=html||'<div class="empty">Keine offenen To-Dos 🎉</div>';
+  document.getElementById("todocount").textContent=open+" offen";
+}
+function toggle(id){const d=getDone();d[id]=!d[id];setDone(d);renderTodos();}
+function addTask(){
+  const inp=document.getElementById("newtask"), b=document.getElementById("newbucket").value;
+  const v=inp.value.trim(); if(!v)return;
+  const m=getManual();
+  const prio=b==="now"?70:(b==="week"?45:20);
+  m.push({id:"man-"+Date.now(),title:v,bucket:b,prio:prio,client:"–",source:"manuell",detail:"",why:""});
+  setManual(m); inp.value=""; renderTodos();
+}
+function delManual(id){setManual(getManual().filter(x=>x.id!==id));const d=getDone();delete d[id];setDone(d);renderTodos();}
+
+function renderAlerts(){
+  const a=DATA.alerts||[];
+  document.getElementById("alertcount").textContent=a.length+" aktiv";
+  if(!a.length){document.getElementById("alerts").innerHTML='<div class="empty">Keine Auffälligkeiten heute.</div>';return;}
+  document.getElementById("alerts").innerHTML=a.map(x=>
+    '<div class="alert"><div class="ic">🚨</div><div class="ab"><div class="ap">'+esc(x.prog)+' · '+esc(x.type)+'</div><div class="ad">'+esc(x.detail)+'</div></div></div>').join("");
+}
+function renderScaling(){
+  const s=(DATA.scaling||[]).slice(0,8);
+  if(!s.length){document.getElementById("scaling").innerHTML='<div class="empty">Aktuell keine neuen Chancen erkannt.</div>';return;}
+  document.getElementById("scaling").innerHTML=s.map(x=>
+    '<div class="scal"><div class="st">'+esc(x.prog)+' · '+esc(x.type)+'</div><div class="sd">'+esc(x.detail)+'</div></div>').join("");
+}
+function renderProgs(){
+  const pc=DATA.prog_cards||[];
+  function dd(x){if(x==null)return "";const up=x>=0;return '<span class="'+(up?'up':'down')+'">'+(up?'▲':'▼')+Math.abs(x).toFixed(0)+'%</span>';}
+  document.getElementById("progs").innerHTML=pc.map(c=>
+    '<div class="prog"><div><div class="pn">'+esc(c.label)+'</div>'+
+    '<div class="pv">'+Number(c.clicks).toLocaleString("de-DE")+' Klicks · '+Number(c.sales).toLocaleString("de-DE")+' Sales</div></div>'+
+    '<div style="text-align:right"><div class="pd">'+Number(c.val).toLocaleString("de-DE",{maximumFractionDigits:0})+' €</div>'+
+    '<div class="pv">Klicks 7T '+dd(c.d7clicks)+'</div></div></div>').join("");
+}
+meta();kpis();renderTodos();renderAlerts();renderScaling();renderProgs();
+</script>
+</body>
+</html>
